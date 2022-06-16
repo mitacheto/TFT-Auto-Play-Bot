@@ -1,45 +1,36 @@
-from vision import Vision
+class Champion:
+    name = None
+    amount = None
+    imp_path = None
 
+    def __init__(self, name, amount, img_path):
+        self.name = name
+        self.amount = amount
+        self.imp_path = img_path
 
-def getChampImage(champ_name):
-    return 'champs_cards\{}.png'.format(champ_name)
+    def champ_bought(self):
+        self.amount = self.amount - 1
 
-def generateComp():
+champs = [
+    {
+        "name": "Ezreal",
+        "amount": 3,
+        "img_path": "champs_cards/Ezreal.png"
+    },
+    {
+        "name": "Varus",
+        "amount": 9,
+        "img_path": "champs_cards/Varus.png"
+    },
+    {
+        "name": "Karma",
+        "amount": 9,
+        "img_path": "champs_cards/Karma.png"
+    },
+]
 
-    created_comp_array = []
-
-    comp_array = [
-        {
-            "name": "Ezreal",
-            "level": "3"
-        },
-        {
-            "name": "Karma",
-            "level": "3"
-        },
-        {
-            "name": "Leona",
-            "level": "3"
-        },
-        {
-            "name": "Taric",
-            "level": "3"
-        },
-        {
-            "name": "Ashe",
-            "level": "3"
-        },
-        {
-            "name": "LeeSin",
-            "level": "3"
-        },
-        {
-            "name": "ShiOhYu",
-            "level": "3"
-        }
-    ]
-
-    for champs in comp_array:
-        created_comp_array.append(Vision(getChampImage(champs['name'])))
-
-    return created_comp_array
+def generate_champs():
+    generated = []
+    for champ in champs:
+        generated.append(Champion(champ["name"], champ["amount"], champ["img_path"]))
+    return generated
